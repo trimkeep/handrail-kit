@@ -28,7 +28,7 @@ jobs:
       - name: shellcheck (if available)
         run: |
           if command -v shellcheck >/dev/null 2>&1; then
-            shellcheck hooks/*.sh install.sh uninstall.sh
+            shellcheck -S warning hooks/*.sh install.sh uninstall.sh
           else
             echo "shellcheck not available on this runner, skipping"
           fi

@@ -1,0 +1,21 @@
+{
+  "deny": [
+    { "name": "rm-rf-root", "input": { "tool_name": "Bash", "tool_input": { "command": "rm -rf /" } } },
+    { "name": "sudo-rm-fr", "input": { "tool_name": "Bash", "tool_input": { "command": "sudo rm -fr /tmp/x" } } },
+    { "name": "chained-rm-r-f", "input": { "tool_name": "Bash", "tool_input": { "command": "echo hi && rm -r -f /tmp/x" } } },
+    { "name": "subshell-rm-rf", "input": { "tool_name": "Bash", "tool_input": { "command": "echo $(rm -rf /tmp/y)" } } },
+    { "name": "mkfs", "input": { "tool_name": "Bash", "tool_input": { "command": "mkfs.ext4 /dev/sdb1" } } },
+    { "name": "dd-to-device", "input": { "tool_name": "Bash", "tool_input": { "command": "dd if=/dev/zero of=/dev/sda" } } },
+    { "name": "shred", "input": { "tool_name": "Bash", "tool_input": { "command": "shred -u secret.txt" } } },
+    { "name": "redirect-dev-sd", "input": { "tool_name": "Bash", "tool_input": { "command": "echo boom > /dev/sda" } } },
+    { "name": "chmod-777-root", "input": { "tool_name": "Bash", "tool_input": { "command": "chmod -R 777 /" } } },
+    { "name": "fork-bomb", "input": { "tool_name": "Bash", "tool_input": { "command": ":(){ :|:& };:" } } }
+  ],
+  "allow": [
+    { "name": "ls-la", "input": { "tool_name": "Bash", "tool_input": { "command": "ls -la" } } },
+    { "name": "git-status", "input": { "tool_name": "Bash", "tool_input": { "command": "git status" } } },
+    { "name": "npm-install", "input": { "tool_name": "Bash", "tool_input": { "command": "npm install" } } },
+    { "name": "grep-r-benign", "input": { "tool_name": "Bash", "tool_input": { "command": "grep -r foo . | wc -l" } } },
+    { "name": "non-bash-tool", "input": { "tool_name": "Read", "tool_input": { "file_path": "/etc/hosts" } } }
+  ]
+}

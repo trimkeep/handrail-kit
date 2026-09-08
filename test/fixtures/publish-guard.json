@@ -1,0 +1,22 @@
+{
+  "deny": [
+    { "name": "npm-publish-access-public", "input": { "tool_name": "Bash", "tool_input": { "command": "npm publish --access public" } } }
+  ],
+  "ask": [
+    { "name": "npm-publish-plain", "input": { "tool_name": "Bash", "tool_input": { "command": "npm publish" } } },
+    { "name": "twine-upload", "input": { "tool_name": "Bash", "tool_input": { "command": "twine upload dist/*" } } },
+    { "name": "cargo-publish", "input": { "tool_name": "Bash", "tool_input": { "command": "cargo publish" } } },
+    { "name": "gem-push", "input": { "tool_name": "Bash", "tool_input": { "command": "gem push mygem-1.0.0.gem" } } },
+    { "name": "docker-push", "input": { "tool_name": "Bash", "tool_input": { "command": "docker push myrepo/myimage:latest" } } },
+    { "name": "gh-release-create", "input": { "tool_name": "Bash", "tool_input": { "command": "gh release create v1.0.0" } } },
+    { "name": "wrangler-deploy", "input": { "tool_name": "Bash", "tool_input": { "command": "wrangler deploy" } } },
+    { "name": "vercel-prod", "input": { "tool_name": "Bash", "tool_input": { "command": "vercel --prod" } } },
+    { "name": "firebase-deploy", "input": { "tool_name": "Bash", "tool_input": { "command": "firebase deploy" } } }
+  ],
+  "allow": [
+    { "name": "npm-test", "input": { "tool_name": "Bash", "tool_input": { "command": "npm test" } } },
+    { "name": "npm-run-build", "input": { "tool_name": "Bash", "tool_input": { "command": "npm run build" } } },
+    { "name": "docker-build", "input": { "tool_name": "Bash", "tool_input": { "command": "docker build -t myimage ." } } },
+    { "name": "vercel-dev", "input": { "tool_name": "Bash", "tool_input": { "command": "vercel dev" } } }
+  ]
+}

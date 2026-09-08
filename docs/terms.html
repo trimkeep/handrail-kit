@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handrail Terms</title>
+<meta name="description" content="Handrail v0.9 terms of sale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0b0d10;
+    --bg-elevated: #14171c;
+    --fg: #e9edf1;
+    --fg-muted: #a7b0ba;
+    --border: #262b32;
+    --accent: #f2a93b;
+    --focus: #f2a93b;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color-scheme: light;
+      --bg: #faf8f4;
+      --bg-elevated: #ffffff;
+      --fg: #14171c;
+      --fg-muted: #4b5563;
+      --border: #e2e2df;
+      --accent: #a5670a;
+      --focus: #a5670a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  h1, h2 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    text-wrap: balance;
+    line-height: 1.2;
+  }
+
+  h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; }
+
+  a { color: var(--accent); }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .draft-notice {
+    display: inline-block;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.85rem;
+    color: var(--fg-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .updated {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    margin-top: -0.4rem;
+  }
+
+  ol { padding-left: 1.3rem; }
+  li { max-width: 68ch; margin-bottom: 1rem; }
+
+  p, li { max-width: 68ch; }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    background: var(--bg-elevated);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+  }
+
+  .back {
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 0.92rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Handrail v0.9 — Terms of Sale</h1>
+  <p class="updated">Last updated: 2026-09-08</p>
+
+  <ol>
+    <li><strong>Parties.</strong> These terms are between you (the buyer) and the Handrail project (the seller). Checkout, payment, and receipts are handled by Polar, acting as merchant of record.</li>
+    <li><strong>Licence.</strong> A one-time, non-exclusive licence to use Handrail v0.9 and, on release, v1.0, per buyer. Not a subscription. No resale or sublicensing. Your licence key may be activated on up to 3 machines.</li>
+    <li><strong>Early-access scope.</strong> v0.9 adds a protected-path guard, per-role write scopes, secret detection in edits, and a wider dangerous-command matrix on top of the free pack. v1.0 ships to every buyer within 14 days of purchase, at no extra cost.</li>
+    <li><strong>Updates.</strong> 12 months of updates are included from the date of purchase.</li>
+    <li><strong>Refunds.</strong> Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key. One refund per buyer. This voluntary refund does not reduce any statutory right you may have as a consumer.</li>
+    <li><strong>Liability.</strong> Our total liability to you for any claim arising from this purchase is capped at the fees you paid. Nothing in these terms excludes or limits liability that cannot lawfully be excluded or limited, and nothing here is a blanket exclusion of liability.</li>
+    <li><strong>Not a security audit.</strong> Handrail is a defence-in-depth layer. It is not a security audit or certification, and does not replace backups, code review, or your own judgment.</li>
+    <li><strong>Governing law.</strong> These terms are governed by the laws of Japan. If you are a consumer, any mandatory consumer-protection law of your own country continues to apply where it would otherwise apply.</li>
+    <li><strong>Contact.</strong> Support and refund requests go through Polar's buyer support for this order.</li>
+  </ol>
+
+  <a class="back" href="index.html">&larr; Back to Handrail</a>
+</div>
+</body>
+</html>

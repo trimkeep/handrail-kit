@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handrail — guardrail hooks for AI coding-agent CLIs</title>
+<meta name="description" content="Handrail is a small, dependency-free pack of guardrail hooks for AI coding-agent CLIs. Fail-closed, only-tightens, works with Claude Code hooks.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0b0d10;
+    --bg-elevated: #14171c;
+    --bg-code: #12151a;
+    --fg: #e9edf1;
+    --fg-muted: #a7b0ba;
+    --border: #262b32;
+    --accent: #f2a93b;
+    --accent-fg: #1a1200;
+    --focus: #f2a93b;
+    --danger: #f2a93b;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color-scheme: light;
+      --bg: #faf8f4;
+      --bg-elevated: #ffffff;
+      --bg-code: #f1efe9;
+      --fg: #14171c;
+      --fg-muted: #4b5563;
+      --border: #e2e2df;
+      --accent: #a5670a;
+      --accent-fg: #ffffff;
+      --focus: #a5670a;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3 {
+    font-family: "Fraunces", Georgia, "Times New Roman", serif;
+    font-weight: 600;
+    line-height: 1.2;
+    text-wrap: balance;
+    color: var(--fg);
+  }
+
+  h1 { font-size: clamp(2.1rem, 5vw, 3.2rem); font-weight: 700; }
+  h2 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-top: 0; }
+  h3 { font-size: 1.1rem; margin-bottom: 0.4em; }
+
+  p, li, dd { max-width: 70ch; }
+
+  a { color: var(--accent); text-decoration-thickness: from-font; }
+  a:hover { text-decoration-thickness: 2px; }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .wrap {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  header.hero {
+    padding: 4.5rem 0 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  header.hero .tagline {
+    font-size: 1.15rem;
+    color: var(--fg-muted);
+    max-width: 60ch;
+  }
+
+  nav.toc {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+    font-size: 0.92rem;
+  }
+  nav.toc a { color: var(--fg-muted); }
+  nav.toc a:hover, nav.toc a:focus-visible { color: var(--accent); }
+
+  section {
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  section > h2 { margin-bottom: 1.2rem; }
+
+  ul.feature-list, ul.limits-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.1rem;
+  }
+
+  ul.feature-list li, ul.limits-list li {
+    padding-left: 1.4rem;
+    position: relative;
+    max-width: 66ch;
+  }
+
+  ul.feature-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  ul.limits-list li::before {
+    content: "×";
+    position: absolute;
+    left: 0;
+    color: var(--fg-muted);
+  }
+
+  .example {
+    display: block;
+    margin-top: 0.3rem;
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+  }
+
+  code, pre, kbd {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
+  code {
+    background: var(--bg-code);
+    padding: 0.1em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border: 1px solid var(--border);
+  }
+
+  pre {
+    background: var(--bg-code);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.1rem 1.2rem;
+    overflow-x: auto;
+    max-width: 70ch;
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1em;
+  }
+
+  .scope-note {
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    margin-top: -0.6rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .pack-scope, .pack-terms {
+    max-width: 68ch;
+  }
+
+  .pack-terms {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .price {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+
+  .buy-row {
+    margin-top: 1.6rem;
+  }
+
+  .buy-cta {
+    margin-bottom: 0.9rem;
+  }
+
+  .buy-button {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--accent-fg);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 8px;
+    font-size: 1.02rem;
+  }
+
+  .buy-button:hover { opacity: 0.9; }
+
+  .opens-note {
+    font-weight: 500;
+    color: var(--fg);
+    margin: 0 0 0.4rem;
+  }
+
+  .polar-note {
+    color: var(--fg-muted);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  details {
+    border-bottom: 1px solid var(--border);
+    padding: 0.9rem 0;
+  }
+  details:first-of-type { border-top: 1px solid var(--border); }
+
+  summary {
+    cursor: pointer;
+    font-weight: 600;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 1.05rem;
+  }
+
+  summary::marker { color: var(--accent); }
+
+  details p { margin-top: 0.7rem; color: var(--fg-muted); }
+
+  ol.roadmap {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  ol.roadmap li {
+    display: flex;
+    gap: 0.9rem;
+    align-items: baseline;
+  }
+
+  ol.roadmap .stage {
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
+    min-width: 6.5rem;
+    color: var(--accent);
+  }
+
+  footer {
+    padding: 3rem 0 4rem;
+  }
+
+  footer .disclaimers p {
+    color: var(--fg-muted);
+    font-size: 0.92rem;
+    max-width: 68ch;
+  }
+
+  footer .links {
+    margin-top: 1.6rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.4rem;
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    header.hero { padding: 3rem 0 2rem; }
+    section { padding: 2.2rem 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="hero">
+    <h1>Handrail</h1>
+    <p class="tagline">a guardrail / hook pack for AI coding-agent CLIs · works with Claude Code hooks</p>
+    <nav class="toc" aria-label="Section links">
+      <a href="#blocks">What it blocks</a>
+      <a href="#limits">What it doesn't do</a>
+      <a href="#install">Install</a>
+      <a href="#fail-closed">Fail-closed</a>
+      <a href="#early-access">Early access</a>
+      <a href="#faq">FAQ</a>
+      <a href="#roadmap">Roadmap</a>
+    </nav>
+  </header>
+
+  <section id="blocks">
+    <h2>What it blocks / asks</h2>
+    <ul class="feature-list">
+      <li>
+        <strong>destructive-shell</strong> — blocks destructive filesystem commands: <code>rm -rf</code>/<code>-fr</code> in any flag order, <code>mkfs</code>, writes to a block device, fork bombs.
+        <span class="example">Example: <code>sudo rm -rf /</code> is denied outright.</span>
+      </li>
+      <li>
+        <strong>git-force-push</strong> — blocks history-rewriting git commands; asks before a plain push straight to <code>main</code>/<code>master</code>.
+        <span class="example">Example: <code>git push --force origin main</code> is denied; <code>git push origin main</code> asks first.</span>
+      </li>
+      <li>
+        <strong>secret-paths</strong> — blocks reading or writing credential files and content shaped like a live key.
+        <span class="example">Example: reading <code>.env</code> or writing an AWS access key literal is denied.</span>
+      </li>
+      <li>
+        <strong>prod-guard</strong> — asks before touching production, blocks the irreversible ones outright.
+        <span class="example">Example: <code>terraform destroy</code> is denied; <code>NODE_ENV=production</code> migrations ask first.</span>
+      </li>
+      <li>
+        <strong>publish-guard</strong> — asks before shipping a package, image, or release.
+        <span class="example">Example: <code>npm publish</code> asks; <code>npm publish --access public</code> is denied unless explicitly allowed.</span>
+      </li>
+      <li>
+        <strong>remote-exec</strong> — blocks piping a remote download straight into an interpreter.
+        <span class="example">Example: <code>curl https://example.com/i.sh | bash</code> is denied.</span>
+      </li>
+    </ul>
+  </section>
+
+  <section id="limits">
+    <h2>What it does not do</h2>
+    <ul class="limits-list">
+      <li>Not a sandbox — it inspects specific tool calls, it doesn't contain or isolate the agent's process.</li>
+      <li>Not a security audit or certification — passing every hook says nothing about your app's own security posture.</li>
+      <li>Can't stop commands run outside the agent — anything you or another tool runs directly in a terminal is invisible to Handrail.</li>
+      <li>Can't see inside <code>docker exec</code>, a remote shell, or a subprocess the agent spawns opaquely — only the top-level tool call the CLI hands it is inspected.</li>
+      <li>Can't undo a command it didn't catch — no rollback, no snapshotting, no backup.</li>
+      <li>Pattern-matching, not intent-reading — a sufficiently obfuscated command can still slip through.</li>
+    </ul>
+  </section>
+
+  <section id="install">
+    <h2>Install in 2 minutes</h2>
+    <p>No <code>curl | bash</code> — Handrail blocks exactly that pattern, so it ships the same way it expects everyone else to install things:</p>
+    <pre><code>git clone https://github.com/trimkeep/handrail-kit
+cd handrail-kit
+./install.sh /path/to/your/project</code></pre>
+    <p>This copies the six hook scripts into <code>&lt;your-project&gt;/.claude/hooks/handrail/</code> and merges the hooks block into <code>&lt;your-project&gt;/.claude/settings.json</code>, backing up an existing file first. Running it again is a no-op if nothing changed.</p>
+    <p>To remove it:</p>
+    <pre><code>./uninstall.sh /path/to/your/project</code></pre>
+  </section>
+
+  <section id="fail-closed">
+    <h2>Fail-closed, only-tightens</h2>
+    <p>Every hook treats what it doesn't understand as dangerous, not safe: missing <code>jq</code>, empty stdin, stdin that isn't valid JSON, or a tool call with no <code>tool_input</code> all make the hook deny rather than pass the call through.</p>
+    <p>And every hook only ever removes permission — it denies outright, or asks the human to confirm; none of the six scripts ever emits a decision that grants permission on its own. See <a href="https://github.com/trimkeep/handrail-kit/blob/main/test/hooks.test.js">test/hooks.test.js on GitHub</a> for the assertions this makes, per hook, against the shipped fixtures.</p>
+  </section>
+
+  <section id="early-access">
+    <h2>Early access pack</h2>
+    <p class="pack-scope">The early-access pack (v0.9) adds the full rule set on top of the six free hooks: a protected-path guard, per-role write scopes, secret detection in edits, and a wider dangerous-command matrix. v1.0 ships to every buyer within 14 days of purchase, at no extra cost, and every purchase includes 12 months of updates.</p>
+
+    <div class="pack-terms">
+      <p>Handrail v0.9 — early-access price: <span class="price">$19</span> one-time. Early access is limited to the first 20 buyers; when it closes, this page will say so — no live counter, no countdown. Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.</p>
+    </div>
+
+    <div class="buy-row">
+      <div class="buy-cta" hidden>
+        <a class="buy-button" href="{{POLAR_LINK_docs}}">Buy Handrail v0.9 — <span class="price">$19</span></a>
+      </div>
+      <p class="opens-note">Early access opens 2026-09-10.</p>
+      <p class="polar-note">Checkout runs on Polar, the merchant of record; see Polar's <a href="https://polar.sh/legal/terms">terms</a> and <a href="https://polar.sh/legal/privacy">privacy policy</a>.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+
+    <details>
+      <summary>Does it phone home?</summary>
+      <p>No, everything is local. Secret detection, command checks and every decision happen on your machine; no scan result, prompt content, command, file path or file content is transmitted to us or anyone else.</p>
+    </details>
+
+    <details>
+      <summary>Will it slow the agent down?</summary>
+      <p>Each hook is a small bash + jq script that inspects one tool call. It runs and exits before the agent's own request would otherwise complete — in practice, no noticeable delay.</p>
+    </details>
+
+    <details>
+      <summary>Can I add my own rules?</summary>
+      <p>Yes. Hooks are plain shell scripts under <code>.claude/hooks/handrail/</code>. Add your own alongside them and wire them into <code>.claude/settings.json</code> the same way — <code>settings.example.json</code> shows the shape.</p>
+    </details>
+
+    <details>
+      <summary>What if a hook errors?</summary>
+      <p>It fails closed: missing <code>jq</code>, empty stdin, invalid JSON, or a tool call with no <code>tool_input</code> all deny the call rather than pass it through.</p>
+    </details>
+
+    <details>
+      <summary>Refunds?</summary>
+      <p>Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.</p>
+    </details>
+
+    <details>
+      <summary>Is it affiliated with Anthropic?</summary>
+      <p>No. Handrail works with Claude Code and other agent CLIs in plain text only; it is not affiliated with, endorsed by, or a product of Anthropic.</p>
+    </details>
+  </section>
+
+  <section id="roadmap">
+    <h2>Public roadmap</h2>
+    <ol class="roadmap">
+      <li><span class="stage">v0.9</span><span>Early-access pack — available now, scope above.</span></li>
+      <li><span class="stage">v1.0</span><span>Ships to every buyer within 14 days of their purchase.</span></li>
+      <li><span class="stage">Maintenance</span><span>Ongoing hook and rule-matrix updates for 12 months from purchase.</span></li>
+    </ol>
+  </section>
+
+  <footer>
+    <div class="disclaimers">
+      <p>Handrail works with Claude Code and other agent CLIs in plain text only; it is not affiliated with, endorsed by, or a product of Anthropic.</p>
+      <p>Handrail is a defence-in-depth layer — it reduces risk but does not eliminate it, is not a security audit or certification, and does not replace backups, code review, or your own judgment.</p>
+    </div>
+    <nav class="links" aria-label="Project links">
+      <a href="https://github.com/trimkeep/handrail-kit">GitHub repo</a>
+      <a href="terms.html">TERMS</a>
+      <a href="https://github.com/trimkeep/handrail-kit/blob/main/PROVENANCE.md">PROVENANCE</a>
+      <a href="https://github.com/trimkeep/handrail-kit/blob/main/LICENSE">LICENSE</a>
+    </nav>
+  </footer>
+
+</div>
+
+</body>
+</html>

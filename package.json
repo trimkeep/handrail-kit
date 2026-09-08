@@ -1,0 +1,14 @@
+{
+  "name": "handrail-kit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Handrail: a fail-closed guardrail hook pack for AI coding-agent CLIs (works with Claude Code hooks).",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test test/hooks.test.js"
+  }
+}

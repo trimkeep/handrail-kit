@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run test suite
+        run: npm test
+
+      - name: bash -n syntax check
+        run: |
+          set -e
+          for f in hooks/*.sh install.sh uninstall.sh; do
+            echo "checking $f"
+            bash -n "$f"
+          done
+
+      - name: shellcheck (if available)
+        run: |
+          if command -v shellcheck >/dev/null 2>&1; then
+            shellcheck hooks/*.sh install.sh uninstall.sh
+          else
+            echo "shellcheck not available on this runner, skipping"
+          fi

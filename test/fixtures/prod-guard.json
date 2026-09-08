@@ -1,0 +1,20 @@
+{
+  "deny": [
+    { "name": "terraform-destroy", "input": { "tool_name": "Bash", "tool_input": { "command": "terraform destroy -auto-approve" } } },
+    { "name": "kubectl-delete-namespace", "input": { "tool_name": "Bash", "tool_input": { "command": "kubectl delete namespace staging" } } }
+  ],
+  "ask": [
+    { "name": "node-env-production", "input": { "tool_name": "Bash", "tool_input": { "command": "NODE_ENV=production npm start" } } },
+    { "name": "rails-env-production", "input": { "tool_name": "Bash", "tool_input": { "command": "RAILS_ENV=production rails console" } } },
+    { "name": "kubectl-apply", "input": { "tool_name": "Bash", "tool_input": { "command": "kubectl apply -f deploy.yaml" } } },
+    { "name": "terraform-apply", "input": { "tool_name": "Bash", "tool_input": { "command": "terraform apply" } } },
+    { "name": "prod-flag", "input": { "tool_name": "Bash", "tool_input": { "command": "deploy-tool release --prod" } } },
+    { "name": "migrate-prod-url", "input": { "tool_name": "Bash", "tool_input": { "command": "npm run migrate -- --database-url postgres://user:pass@host/proddb" } } }
+  ],
+  "allow": [
+    { "name": "npm-test", "input": { "tool_name": "Bash", "tool_input": { "command": "npm test" } } },
+    { "name": "node-env-development", "input": { "tool_name": "Bash", "tool_input": { "command": "NODE_ENV=development npm start" } } },
+    { "name": "kubectl-get-pods", "input": { "tool_name": "Bash", "tool_input": { "command": "kubectl get pods" } } },
+    { "name": "terraform-plan", "input": { "tool_name": "Bash", "tool_input": { "command": "terraform plan" } } }
+  ]
+}

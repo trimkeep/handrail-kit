@@ -1,0 +1,21 @@
+{
+  "deny": [
+    { "name": "push-force-flag", "input": { "tool_name": "Bash", "tool_input": { "command": "git push origin main --force" } } },
+    { "name": "push-f-short", "input": { "tool_name": "Bash", "tool_input": { "command": "git push -f origin feature-x" } } },
+    { "name": "push-plus-refspec", "input": { "tool_name": "Bash", "tool_input": { "command": "git push origin +main:main" } } },
+    { "name": "push-mirror", "input": { "tool_name": "Bash", "tool_input": { "command": "git push --mirror origin" } } },
+    { "name": "reset-hard", "input": { "tool_name": "Bash", "tool_input": { "command": "git reset --hard HEAD~1" } } },
+    { "name": "clean-f", "input": { "tool_name": "Bash", "tool_input": { "command": "git clean -fd" } } },
+    { "name": "branch-D-main", "input": { "tool_name": "Bash", "tool_input": { "command": "git branch -D main" } } },
+    { "name": "checkout-dash-dash-dot", "input": { "tool_name": "Bash", "tool_input": { "command": "git checkout -- ." } } }
+  ],
+  "ask": [
+    { "name": "push-plain-to-main", "input": { "tool_name": "Bash", "tool_input": { "command": "git push origin main" } } }
+  ],
+  "allow": [
+    { "name": "push-feature-branch", "input": { "tool_name": "Bash", "tool_input": { "command": "git push origin feature-x" } } },
+    { "name": "git-commit", "input": { "tool_name": "Bash", "tool_input": { "command": "git commit -m \"fix bug\"" } } },
+    { "name": "git-status", "input": { "tool_name": "Bash", "tool_input": { "command": "git status" } } },
+    { "name": "branch-D-nonmain", "input": { "tool_name": "Bash", "tool_input": { "command": "git branch -D old-feature" } } }
+  ]
+}

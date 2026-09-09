@@ -96,7 +96,7 @@ The pack in this repo is free and always will be. A paid early-access pack (v0.9
 
 Handrail v0.9 — early-access price: $19 one-time. Early access is limited to the first 20 buyers; when it closes, this page will say so — no live counter, no countdown. Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.
 
-Early access opens 2026-09-10 at https://trimkeep.github.io/handrail-kit/ (checkout runs on Polar, the merchant of record).
+Buy early access ($19): https://buy.polar.sh/polar_cl_TJBCNRY6iAyhKnQTzuDs1ZUV8rY9UvmMczDVx2JfNxh — checkout runs on Polar, the merchant of record. Docs: https://trimkeep.com/handrail-kit/
 
 Handrail is a defence-in-depth layer — it reduces risk but does not eliminate it, is not a security audit or certification, and does not replace backups, code review, or your own judgment.
 

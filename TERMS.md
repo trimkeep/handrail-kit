@@ -29,5 +29,5 @@ Last updated: 2026-09-08
 8. **Governing law.** These terms are governed by the laws of Japan. If
    you are a consumer, any mandatory consumer-protection law of your own
    country continues to apply where it would otherwise apply.
-9. **Contact.** Support and refund requests go through Polar's buyer
+9. **Contact.** Support and refund requests go through Polar's buyer For anything Polar cannot answer, write to trimkeep.dev@gmail.com.
    support for this order.

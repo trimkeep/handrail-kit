@@ -51,6 +51,20 @@ Docs and landing: https://trimkeep.github.io/handrail-kit/
   bare URL; asks before `npx <pkg>` (or `pnpm dlx <pkg>`) when the package
   isn't pinned to an explicit version.
 
+## Install as a Claude Code plugin
+
+Handrail is also packaged as a Claude Code plugin, so the hooks can be enabled without
+copying files into a project. In Claude Code:
+
+```
+/plugin marketplace add trimkeep/claude-plugins
+/plugin install handrail@trimkeep
+```
+
+The plugin registers the same six hooks (`hooks/hooks.json`) against `${CLAUDE_PLUGIN_ROOT}`;
+nothing is written into your repository. Disable or uninstall it from `/plugin` at any time.
+Prefer copies you can read and edit in-repo? Use the script install below instead.
+
 ## Install in 2 minutes
 
 No `curl | bash` here — Handrail blocks exactly that pattern, so it ships

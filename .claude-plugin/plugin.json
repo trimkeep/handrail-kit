@@ -1,0 +1,10 @@
+{
+  "name": "handrail",
+  "description": "Fail-closed deny/ask hooks for Claude Code: destructive shell, git force-push/reset, secret paths, prod-environment commands, package publish, remote code piped to a shell. Only tightens, never grants.",
+  "version": "0.1.0",
+  "author": { "name": "Trimkeep", "url": "https://trimkeep.com/handrail-kit/" },
+  "homepage": "https://trimkeep.com/handrail-kit/",
+  "repository": "https://github.com/trimkeep/handrail-kit",
+  "license": "MIT",
+  "keywords": ["hooks", "guardrails", "fail-closed", "security", "claude-code"]
+}

@@ -15,6 +15,8 @@ rule script is self-contained bash + jq, reads the tool call's JSON off
 stdin, and only ever tightens what the agent is allowed to do — it never
 grants permission on its own.
 
+The six hooks in this repo are free (MIT). A paid early-access pack, Handrail v0.9, adds the full rule set for $19 one-time; what it contains, the refund terms and the checkout are under [Paid pack](#paid-pack).
+
 ## Docs
 
 Docs and landing: https://trimkeep.github.io/handrail-kit/

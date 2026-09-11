@@ -108,7 +108,7 @@ decision. Run `npm test` to see it for yourself.
 
 ## Paid pack
 
-The pack in this repo is free and always will be. Handrail v0.9 is the paid pack. Six of its hooks are the free ones in this repo. Five are only in the paid pack and cover secret-looking content (an expanded pattern set), protected paths, per-project write scope, a 26-rule command matrix and network egress.
+Handrail v0.9, the paid pack, ships these six hooks unchanged plus five that block `docker compose down`, `docker system prune`, `chmod -R 777` on any path, `git filter-branch` and `crontab -r`; edits to protected files (the default list includes `.github/workflows/**`, `migrations/**` and `*.lock`); and `sk-proj-`, `xoxb-`, `AIza` or JWT-shaped strings written into a file with Edit, Write or `echo`/`printf`. Its strict preset also blocks Edit and Write calls outside the project root and commands that name the pastebin-style hosts `pastebin.com`, `transfer.sh`, `file.io` or `0x0.st`.
 
 Buy: https://buy.polar.sh/polar_cl_FVHg2M2c1DNYFiXqJN3IBELAHNwQ4XQDkkDwg25nonO — checkout runs on Polar, the merchant of record. Docs: https://trimkeep.com/handrail-kit/
 

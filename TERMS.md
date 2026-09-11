@@ -1,4 +1,4 @@
-# Handrail v0.9 — Terms of Sale
+# Handrail v0.9 — Terms
 
 Last updated: 2026-09-11
 

@@ -6,8 +6,8 @@
 
 ## What it is
 
-Handrail is a small, dependency-free pack of six guardrail hooks for AI
-coding-agent CLIs: shell scripts that inspect a tool call before it runs and
+Handrail is a small, dependency-free pack of six guardrail hooks for Claude
+Code: shell scripts that inspect a tool call before it runs and
 deny, ask-first, or step aside, so a destructive `rm -rf`, a force-push to
 `main`, a stray read of `.env`, or a piped `curl | bash` doesn't happen just
 because an agent proposed it. Handrail works with Claude Code hooks. Each
@@ -15,7 +15,7 @@ rule script is self-contained bash + jq, reads the tool call's JSON off
 stdin, and only ever tightens what the agent is allowed to do — it never
 grants permission on its own.
 
-The six hooks in this repo are free (MIT). A paid early-access pack, Handrail v0.9, adds the full rule set for $19 one-time; what it contains, the refund terms and the checkout are under [Paid pack](#paid-pack).
+The six hooks in this repo are free (MIT). A paid pack, Handrail v0.9, adds five more hooks; what it contains and the checkout are under [Paid pack](#paid-pack).
 
 ## Docs
 
@@ -108,17 +108,15 @@ decision. Run `npm test` to see it for yourself.
 
 ## Paid pack
 
-The pack in this repo is free and always will be. A paid early-access pack (v0.9) adds the full rule set — protected-path guard, per-role write scopes, secret detection in edits, a wider dangerous-command matrix — with v1.0 shipping to every buyer within 14 days of purchase and 12 months of updates.
+The pack in this repo is free and always will be. Handrail v0.9 is the paid pack. Six of its hooks are the free ones in this repo. Five are only in the paid pack and cover secret-looking content (an expanded pattern set), protected paths, per-project write scope, a 26-rule command matrix and network egress.
 
-Handrail v0.9 — early-access price: $19 one-time. Early access is limited to the first 20 buyers; when it closes, this page will say so — no live counter, no countdown. Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.
+Buy: https://buy.polar.sh/polar_cl_FVHg2M2c1DNYFiXqJN3IBELAHNwQ4XQDkkDwg25nonO — checkout runs on Polar, the merchant of record. Docs: https://trimkeep.com/handrail-kit/
 
-Buy early access ($19): https://buy.polar.sh/polar_cl_FVHg2M2c1DNYFiXqJN3IBELAHNwQ4XQDkkDwg25nonO — checkout runs on Polar, the merchant of record. Docs: https://trimkeep.com/handrail-kit/
-
-Handrail is a defence-in-depth layer — it reduces risk but does not eliminate it, is not a security audit or certification, and does not replace backups, code review, or your own judgment.
+Handrail adds defence-in-depth checks — it reduces but never eliminates risk, is not a security audit or certification, and does not replace backups, code review, or your own judgment.
 
 Everything runs locally: secret detection, command checks and every decision happen on your machine; no scan result, prompt content, command, file path or file content is transmitted to us or anyone else.
 
-Handrail works with Claude Code and other agent CLIs in plain text only; it is not affiliated with, endorsed by, or a product of Anthropic.
+Handrail is not affiliated with, endorsed by, or a product of Anthropic.
 
 ## Supported versions
 

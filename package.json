@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Handrail: a fail-closed guardrail hook pack for AI coding-agent CLIs (works with Claude Code hooks).",
+  "description": "Handrail: a fail-closed guardrail hook pack for Claude Code.",
   "license": "MIT",
   "engines": {
     "node": ">=22"

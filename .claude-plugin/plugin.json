@@ -1,6 +1,6 @@
 {
   "name": "handrail",
-  "description": "Fail-closed deny/ask hooks for Claude Code: destructive shell, git force-push/reset, secret paths, prod-environment commands, package publish, remote code piped to a shell. Only tightens, never grants. The plugin is free (MIT); the paid early-access pack with the full rule set is $19 one-time, checkout on Polar: https://buy.polar.sh/polar_cl_JiIVHCFaBlH1jpGpbKWvb5nJX8v3kfJVsXMDD1cZtdU",
+  "description": "Fail-closed deny/ask hooks for Claude Code: destructive shell, git force-push/reset, secret paths, prod-environment commands, package publish, remote code piped to a shell. Only tightens, never grants. The plugin is free (MIT); a paid pack with five more hooks is sold on Polar: https://buy.polar.sh/polar_cl_JiIVHCFaBlH1jpGpbKWvb5nJX8v3kfJVsXMDD1cZtdU",
   "version": "0.1.0",
   "author": { "name": "Trimkeep", "url": "https://trimkeep.com/handrail-kit/" },
   "homepage": "https://trimkeep.com/handrail-kit/",

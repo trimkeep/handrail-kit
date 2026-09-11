@@ -81,4 +81,4 @@ jq -e . "$tmpfile" >/dev/null 2>&1 || { rm -f "$tmpfile"; die "temp settings fil
 mv "$tmpfile" "$SETTINGS" || die "failed to move temp settings file into place"
 
 echo "handrail install: wrote $SETTINGS with all Handrail hooks wired"
-echo 'handrail install: paid pack, $19 one-time: https://buy.polar.sh/polar_cl_FVHg2M2c1DNYFiXqJN3IBELAHNwQ4XQDkkDwg25nonO'
+echo 'handrail install: paid pack on Polar: https://buy.polar.sh/polar_cl_FVHg2M2c1DNYFiXqJN3IBELAHNwQ4XQDkkDwg25nonO'

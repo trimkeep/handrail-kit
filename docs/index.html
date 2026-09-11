@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<title>Handrail — guardrail hooks for AI coding-agent CLIs</title>
-<meta name="description" content="Handrail is a small, dependency-free pack of guardrail hooks for AI coding-agent CLIs. Fail-closed, only-tightens, works with Claude Code hooks.">
+<title>Handrail — guardrail hooks for Claude Code</title>
+<meta name="description" content="Handrail is a small, dependency-free pack of guardrail hooks for Claude Code. Fail-closed, only-tightens.">
 <link rel="canonical" href="https://trimkeep.com/handrail-kit/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Trimkeep">
-<meta property="og:title" content="Handrail — guardrail hooks for AI coding-agent CLIs">
-<meta property="og:description" content="Fail-closed deny/ask hooks for Claude Code and other agent CLIs. MIT. Only tightens, never grants.">
+<meta property="og:title" content="Handrail — guardrail hooks for Claude Code">
+<meta property="og:description" content="Fail-closed deny/ask hooks for Claude Code. MIT. Only tightens, never grants.">
 <meta property="og:url" content="https://trimkeep.com/handrail-kit/">
 <meta property="og:image" content="https://trimkeep.com/handrail-kit/og-handrail.jpg">
 <meta property="og:image:width" content="1200">
@@ -18,10 +18,10 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://trimkeep.com/handrail-kit/og-handrail.jpg">
 <meta name="twitter:site" content="@trimkeep">
-<meta name="twitter:title" content="Handrail — guardrail hooks for AI coding-agent CLIs">
-<meta name="twitter:description" content="Fail-closed deny/ask hooks for Claude Code and other agent CLIs. MIT. Only tightens, never grants.">
+<meta name="twitter:title" content="Handrail — guardrail hooks for Claude Code">
+<meta name="twitter:description" content="Fail-closed deny/ask hooks for Claude Code. MIT. Only tightens, never grants.">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Handrail","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Linux","url":"https://trimkeep.com/handrail-kit/","license":"https://opensource.org/licenses/MIT","description":"A small, dependency-free pack of fail-closed guardrail hooks for AI coding-agent CLIs; works with Claude Code hooks.","author":{"@type":"Organization","name":"Trimkeep","url":"https://trimkeep.com"}}
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Handrail","applicationCategory":"DeveloperApplication","operatingSystem":"macOS, Linux","url":"https://trimkeep.com/handrail-kit/","license":"https://opensource.org/licenses/MIT","description":"A small, dependency-free pack of fail-closed guardrail hooks for Claude Code.","author":{"@type":"Organization","name":"Trimkeep","url":"https://trimkeep.com"}}
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -320,13 +320,13 @@
 
   <header class="hero">
     <h1>Handrail</h1>
-    <p class="tagline">a guardrail / hook pack for AI coding-agent CLIs · works with Claude Code hooks</p>
+    <p class="tagline">a guardrail / hook pack for Claude Code</p>
     <nav class="toc" aria-label="Section links">
       <a href="#blocks">What it blocks</a>
       <a href="#limits">What it doesn't do</a>
       <a href="#install">Install</a>
       <a href="#fail-closed">Fail-closed</a>
-      <a href="#early-access">Early access</a>
+      <a href="#paid-pack">Paid pack</a>
       <a href="#faq">FAQ</a>
       <a href="#roadmap">Roadmap</a>
     </nav>
@@ -395,19 +395,14 @@ cd handrail-kit
     <p>And every hook only ever removes permission — it denies outright, or asks the human to confirm; none of the six scripts ever emits a decision that grants permission on its own. See <a href="https://github.com/trimkeep/handrail-kit/blob/main/test/hooks.test.js">test/hooks.test.js on GitHub</a> for the assertions this makes, per hook, against the shipped fixtures.</p>
   </section>
 
-  <section id="early-access">
-    <h2>Early access pack</h2>
-    <p class="pack-scope">The early-access pack (v0.9) adds the full rule set on top of the six free hooks: a protected-path guard, per-role write scopes, secret detection in edits, and a wider dangerous-command matrix. v1.0 ships to every buyer within 14 days of purchase, at no extra cost, and every purchase includes 12 months of updates.</p>
-
-    <div class="pack-terms">
-      <p>Handrail v0.9 — early-access price: <span class="price">$19</span> one-time. Early access is limited to the first 20 buyers; when it closes, this page will say so — no live counter, no countdown. Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.</p>
-    </div>
+  <section id="paid-pack">
+    <h2>Paid pack</h2>
+    <p class="pack-scope">Handrail v0.9 is the paid pack. Six of its hooks are the free handrail-kit on this page. Five are only in the pack and cover secret-looking content (an expanded pattern set), protected paths, per-project write scope, a 26-rule command matrix and network egress. It never grants a permission on its own.</p>
 
     <div class="buy-row">
       <div class="buy-cta">
-        <a class="buy-button" href="https://buy.polar.sh/polar_cl_g0ed876Jghhw3o2tMYtvUeuwHFHmrx34XEPj01CTjV4">Buy Handrail v0.9 — <span class="price">$19</span></a>
+        <a class="buy-button" href="https://buy.polar.sh/polar_cl_g0ed876Jghhw3o2tMYtvUeuwHFHmrx34XEPj01CTjV4">Buy Handrail v0.9 on Polar</a>
       </div>
-      <p class="opens-note">Early access is open — first 20 buyers.</p>
       <p class="polar-note">Checkout runs on Polar, the merchant of record; see Polar's <a href="https://polar.sh/legal/terms">terms</a> and <a href="https://polar.sh/legal/privacy">privacy policy</a>.</p>
     </div>
   </section>
@@ -436,29 +431,22 @@ cd handrail-kit
     </details>
 
     <details>
-      <summary>Refunds?</summary>
-      <p>Handrail v0.9 comes with a voluntary 14-day, no-questions refund, processed through Polar in addition to — not in place of — any statutory withdrawal right shown at checkout; refunds deactivate your licence key.</p>
-    </details>
-
-    <details>
       <summary>Is it affiliated with Anthropic?</summary>
-      <p>No. Handrail works with Claude Code and other agent CLIs in plain text only; it is not affiliated with, endorsed by, or a product of Anthropic.</p>
+      <p>No. Handrail is not affiliated with, endorsed by, or a product of Anthropic.</p>
     </details>
   </section>
 
   <section id="roadmap">
     <h2>Public roadmap</h2>
     <ol class="roadmap">
-      <li><span class="stage">v0.9</span><span>Early-access pack — available now, scope above.</span></li>
-      <li><span class="stage">v1.0</span><span>Ships to every buyer within 14 days of their purchase.</span></li>
-      <li><span class="stage">Maintenance</span><span>Ongoing hook and rule-matrix updates for 12 months from purchase.</span></li>
+      <li><span class="stage">v0.9</span><span>Paid pack — available now, scope above.</span></li>
     </ol>
   </section>
 
   <footer>
     <div class="disclaimers">
-      <p>Contact: <a href="mailto:trimkeep.dev@gmail.com">trimkeep.dev@gmail.com</a> · billing and refunds through Polar support.</p><p>Handrail works with Claude Code and other agent CLIs in plain text only; it is not affiliated with, endorsed by, or a product of Anthropic.</p>
-      <p>Handrail is a defence-in-depth layer — it reduces risk but does not eliminate it, is not a security audit or certification, and does not replace backups, code review, or your own judgment.</p>
+      <p>Handrail is not affiliated with, endorsed by, or a product of Anthropic.</p>
+      <p>Handrail adds defence-in-depth checks — it reduces but never eliminates risk, is not a security audit or certification, and does not replace backups, code review, or your own judgment.</p>
     </div>
     <nav class="links" aria-label="Project links">
       <a href="https://github.com/trimkeep/handrail-kit">GitHub repo</a>
